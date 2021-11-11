@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useParams } from "react-router-dom";
@@ -24,11 +24,18 @@ export const ResetPassword = () => {
       console.log(formData);
     },
   });
+  useEffect(() => {
+    const resetPassword = async () => {
+      await resetPasswordService({
+        resetPasswordLink: resetPasswordToken,
+        newPassword: formik.values.newPassword,
+      });
+    }
+    resetPassword();
 
-  resetPasswordService({
-    resetPasswordLink: resetPasswordToken,
-    newPassword: formik.values.newPassword,
-  });
+  }, [formik.values.newPassword, resetPasswordToken])
+
+
 
   return (
     <Container
