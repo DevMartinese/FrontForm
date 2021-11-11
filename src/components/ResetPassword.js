@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useParams } from "react-router-dom";
-// import { Container, Form, Button } from "semantic-ui-react";
+
 import {
   Container,
   Card,
@@ -24,6 +24,7 @@ export const ResetPassword = () => {
       console.log(formData);
     },
   });
+
   useEffect(() => {
     const resetPassword = async () => {
       await resetPasswordService({
@@ -34,8 +35,6 @@ export const ResetPassword = () => {
     resetPassword();
 
   }, [formik.values.newPassword, resetPasswordToken])
-
-
 
   return (
     <Container
