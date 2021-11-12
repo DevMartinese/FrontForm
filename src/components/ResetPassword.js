@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import * as Yup from "yup";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -18,7 +18,7 @@ export const ResetPassword = () => {
     initialValues: {
       newPassword: "",
     },
-    validationSchema: yup.string().min(6).required("Required"),
+    validationSchema: Yup.string().min(6).required("Required"),
     onSubmit: (formData) => {
       console.log(formData);
     },
