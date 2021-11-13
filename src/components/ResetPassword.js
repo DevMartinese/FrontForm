@@ -2,13 +2,7 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useParams } from "react-router-dom";
-import {
-  Container,
-  Card,
-  FormControl,
-  Input,
-  Button,
-} from "@mui/material";
+import { Container, Card, FormControl, Input, Button } from "@mui/material";
 import { resetPasswordService } from "../services/auth";
 
 export const ResetPassword = () => {
@@ -18,7 +12,12 @@ export const ResetPassword = () => {
     initialValues: {
       newPassword: "",
     },
-    validationSchema: Yup.string().min(6).required("Required"),
+    validationSchema: Yup.object({
+      newPassword: Yup.string()
+        .required("La contraseña es obligatoria")
+        .min(6)
+        .max(255),
+    }),
     onSubmit: (formData) => {
       console.log(formData);
     },
@@ -30,10 +29,9 @@ export const ResetPassword = () => {
         resetPasswordLink: resetPasswordToken,
         newPassword: formik.values.newPassword,
       });
-    }
+    };
     resetPassword();
-
-  }, [formik.values.newPassword, resetPasswordToken])
+  }, [formik.values.newPassword, resetPasswordToken]);
 
   return (
     <Container
